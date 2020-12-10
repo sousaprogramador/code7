@@ -10,9 +10,7 @@ const api = axios.create({
 });
 
 export const userApi = axios.create({
-  baseURL:
-    // /*'http://localhost:8080/citizen/',*/ 'https://api3.medcovid.amla.com.br/citizen/,
-    'https://api1.covid.saude.araguaina.to.gov.br/citizen',
+  baseURL: ''
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
   },
