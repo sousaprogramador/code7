@@ -1,4 +1,4 @@
-import React, { useEffect, useState, Suspense, memo } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import * as router from 'react-router-dom';
 import { Container } from 'reactstrap';
@@ -63,8 +63,8 @@ const DefaultLayout = (props) => {
           <Container fluid style={{ padding: 10 }}>
             <Suspense fallback={loading()}>
               <Switch>
-                {routes.map((route) => {
-                  return route.component ? (
+                {routes.map((route) =>
+                  route.component ? (
                     <Route
                       key={route.name}
                       path={route.path}
@@ -72,8 +72,8 @@ const DefaultLayout = (props) => {
                       name={route.name}
                       render={(p) => <route.component {...p} />}
                     />
-                  ) : null;
-                })}
+                  ) : null,
+                )}
               </Switch>
             </Suspense>
           </Container>

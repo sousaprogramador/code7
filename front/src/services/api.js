@@ -10,7 +10,7 @@ const api = axios.create({
 });
 
 export const userApi = axios.create({
-  baseURL: ''
+  baseURL: 'https://jsonplaceholder.typicode.com',
   headers: {
     'Content-type': 'application/json; charset=UTF-8',
   },

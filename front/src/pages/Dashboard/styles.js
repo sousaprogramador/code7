@@ -1,31 +1,27 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { TableCell, TableRow } from '@material-ui/core';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+
+export const StyledTableCell = withStyles((theme) => ({
+  head: {
+    backgroundColor: '#eceff1',
+    color: theme.palette.common.black,
+    fontSize: 15,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
+
+export const StyledTableRow = withStyles((theme) => ({
+  root: {
+    '&:nth-of-type(odd)': {
+      backgroundColor: theme.palette.action.hover,
+    },
+  },
+}))(TableRow);
 
 export const useStyles = makeStyles({
-  card: {
-    display: 'flex',
-  },
-  cardRecovered: {
-    flexGrow: 1,
-    borderLeft: '10px solid #00A785',
-  },
-  cardConfirm: {
-    flexGrow: 1,
-    borderLeft: '10px solid #ff6f00',
-  },
-  cardDead: {
-    flexGrow: 1,
-    borderLeft: '10px solid #512da8',
-  },
-  cardNotif: {
-    flexGrow: 1,
-    borderLeft: '10px solid #33691e',
-  },
-  cardSuspect: {
-    flexGrow: 1,
-    borderLeft: '10px solid #ffab00',
-  },
-  cardDiscarted: {
-    flexGrow: 1,
-    borderLeft: '10px solid #0d47a1',
+  table: {
+    minWidth: 700,
   },
 });

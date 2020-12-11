@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
@@ -17,8 +17,8 @@ import avatar from '../../assets/img/suporte.png';
 import { Creators as AuthActions } from '../../store/ducks/auth';
 
 const DefaultHeader = ({ logOut }) => {
-  const [name] = useState(localStorage.getItem('@code7'));
-  const [permission] = useState(localStorage.getItem('@code7_permission'));
+  const [name] = useState(localStorage.getItem('@COVID_NAME'));
+  const [permission] = useState(localStorage.getItem('@COVID_PERMISSION'));
   const [adm, setAdm] = useState(false);
   const [perName, setPername] = useState('');
 
@@ -32,6 +32,12 @@ const DefaultHeader = ({ logOut }) => {
         setAdm(true);
         setPername('Supervisor');
         break;
+      case '3':
+        setPername('Médico');
+        break;
+      case '4':
+        setPername('Monitor');
+        break;
       default:
         setPername('Usuário');
     }
@@ -42,7 +48,7 @@ const DefaultHeader = ({ logOut }) => {
       <AppSidebarToggler className="d-lg-none" display="md" mobile />
 
       <AppNavbarBrand
-        full={{ src: sygnet, width: 95, height: 30, alt: 'Code7' }}
+        full={{ src: sygnet, width: 95, height: 30, alt: 'Covid-ARN' }}
       />
       <AppSidebarToggler className="d-md-down-none" display="lg" />
 
