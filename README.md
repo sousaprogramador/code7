@@ -6,3 +6,7 @@
 3. Acessando diretorio da api e front executar [yarn](https://yarnpkg.com/getting-started/install) para instalar as dependencias 
 > cd api && yarn 
 > cd front && yarn 
+4. Executando front 
+> yarn start
+5. Executando api 
+> yarn start
