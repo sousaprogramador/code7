@@ -4,10 +4,12 @@ require("dotenv").config({
 
 const express = require("express");
 const mongoose = require('mongoose');
+const cors = require('cors')
 
 class AppController {
   constructor() {
     this.express = express();
+    this.cors();
     this.middlewares();
     this.connect();
     this.routes();
@@ -19,6 +21,10 @@ class AppController {
 
   routes() {
     this.express.use(require("./routes"));
+  }
+
+  cors(){
+    this.express.use(cors());
   }
 
   connect(){
