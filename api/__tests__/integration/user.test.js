@@ -6,7 +6,7 @@ require("dotenv").config({
   path: process.env.NODE_ENV === "test" ? ".env.test" : ".env"
 });
 
-describe('financial',()=>{
+describe('users',()=>{
 
   let connection;
   let db;
@@ -19,7 +19,7 @@ describe('financial',()=>{
   });
 
   beforeEach(async () => {
-    await db.collection('financial').deleteMany({});
+    await db.collection('user').deleteMany({});
   });
 
   afterAll(async () => {
@@ -27,50 +27,37 @@ describe('financial',()=>{
     await db.close();
   });
 
-  it('should recive financial date and save in database', async ()=>{
+  it('should recive users date and save in database', async ()=>{
     const response = await request(app)
-      .post("/financial")
+      .post("/user")
       .send({
-        client_id: 1,
-        motive: "teste de integracao",
-        amount:10,
-        date:"2020-12-12T12:39:26.564Z"
+        name:"Mateus Sousa",
+        email:"sousa.programador@gmail.com",
+        password:"secretf5"
       });
     expect(response.status).toBe(201);
   })
 
-  it('should recive financial date and return error 500', async ()=>{
-    const response = await request(app)
-      .post("/financial")
-      .send({
-        motive: "teste de integracao",
-        amount:10,
-        date:"2020-12-12T12:39:26.564Z"
-      });
-    expect(response.status).toBe(500);
-  })
-
   it('should list financial register in database', async ()=>{
     const response = await request(app)
-    .get("/financial")
+    .get("/user")
     expect(response.status).toBe(200);
   })
 
   it('should show register financial register in database', async ()=>{
-    const financial = db.collection('financial');
+    const financial = db.collection('user');
 
     const mockFinancial = {
       _id:"5fd4e226b986772f58af24ec",
-      client_id:1,
-      motive:"teste de integracao",
-      amount:10,
-      date:"2020-12-12T12:39:26.564Z"
+      name:"Mateus Sousa",
+      email:"sousa.programador@gmail.com",
+      password:"secretf5"
     };
 
     await financial.insertOne(mockFinancial);
 
     const response = await request(app)
-    .get("/financial/5fd4e226b986772f58af24ec")
+    .get("/user/5fd4e226b986772f58af24ec")
     expect(response.status).toBe(200);
   })
 

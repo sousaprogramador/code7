@@ -1,9 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
-
-const authConfig = require("../../config/auth");
-
 class AuthController {
   async store(req,res){
     const {email, password} = req.body;
@@ -18,7 +15,7 @@ class AuthController {
         return res.status(400).json({msg:"username or password invalid"})
       }
 
-      const token = jwt.sign( { id:user._id } ,authConfig.secret,{
+      const token = jwt.sign( { id: "75253385b188d3113aea2cfe416dd0f3" } ,authConfig.secret,{
         expiresIn:86500,
        })
 

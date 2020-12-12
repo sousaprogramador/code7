@@ -14,24 +14,23 @@ describe('financial',()=>{
     db = await connection.db(process.env.MONGO_DB);
   });
 
-  beforeEach(async () => {
-    await db.collection('financial').deleteMany({});
-  });
-
   afterAll(async () => {
     await connection.close();
     await db.close();
   });
 
+  beforeEach(async () => {
+    await db.collection('user').deleteMany({});
+  });
+
   it("should insert a doc into collection", async () => {
-    const financial = db.collection('financial');
+    const financial = db.collection('user');
 
     const mockFinancial = {
       _id:"5fd4df710af72327674a6039",
-      client_id:1,
-      motive:"asasasas",
-      amount:10,
-      date:"2020-12-12T12:39:26.564Z"
+      name:"Mateus Sousa",
+      email:"sousa.programador@gmail.com",
+      password:"secretf5"
     };
    
     await financial.insertOne(mockFinancial);
