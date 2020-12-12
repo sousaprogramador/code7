@@ -1,17 +1,1 @@
-1. Adicionar nova dívida, informando qual cliente está relacionada a ela;
-2. Listar todas as dívidas associadas a um determinado cliente;
-3. Obter detalhes de uma dívida;
-4. Editar uma dívida;
-5. Deletar uma dívida.
-
-{
-  cliente
-  motivo
-  valor
-  data
-}
-
-o Id da dívida,
-o Id do usuário no JSONPlaceholder o Motivo da dívida
-o Data da dívida
-o Valor
+# H1 Code7 Appliaction Test
