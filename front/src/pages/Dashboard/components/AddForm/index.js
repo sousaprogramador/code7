@@ -41,7 +41,7 @@ const Register = memo(({ isOpenModal, dataRequest, userData }) => {
                 <h5>Informações Pessoais:</h5>
 
                 <Row form>
-                  <Col className="px-md-8" md={8}>
+                  <Col className="px-md-2" md={12}>
                     <FormGroup>
                       <Label>Nome Completo:*</Label>
 
@@ -53,10 +53,55 @@ const Register = memo(({ isOpenModal, dataRequest, userData }) => {
                       >
                         {userData
                           ? userData.map((row) => (
-                              <option value={row.id}>{row.name}</option>
-                            ))
+                            <option value={row.id}>{row.name}</option>
+                          ))
                           : ''}
                       </Input>
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row form>
+                  <Col className="px-md-2" md={24}>
+                    <FormGroup>
+                      <Label>Motivo:*</Label>
+
+                      <Input
+                        name="motive"
+                        type="textarea"
+                        value={data.motive || ''}
+                        onChange={handleChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row form>
+                  <Col className="px-md-2" md={24}>
+                    <FormGroup>
+                      <Label>Data:*</Label>
+
+                      <Input
+                        name="create_at"
+                        type="date"
+                        max={new Date().toISOString().slice(0, 10)}
+                        required
+                        onChange={handleChange}
+                        value={data.create_at || ''}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+                <Row form>
+                  <Col className="px-md-2" md={24}>
+                    <FormGroup>
+                      <Label>Data:*</Label>
+
+                      <Input
+                        name="amount"
+                        type="number"
+                        required
+                        onChange={handleChange}
+                        value={data.amount || ''}
+                      />
                     </FormGroup>
                   </Col>
                 </Row>

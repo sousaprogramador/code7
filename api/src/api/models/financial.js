@@ -8,11 +8,11 @@ const Financial = Schema({
       min: 0,
       max: 255
     },
-    reason : {
+    motive : {
       type : String,
       required: true
     },
-    value : {
+    amount : {
       type : Number,
       required: true,
       min: 0,
