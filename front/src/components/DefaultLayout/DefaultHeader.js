@@ -12,13 +12,13 @@ import {
 } from 'reactstrap';
 
 import { AppNavbarBrand, AppSidebarToggler } from '@coreui/react';
-import sygnet from '../../assets/img/brand/Logo.png';
+import sygnet from '../../assets/logo.png';
 import avatar from '../../assets/img/suporte.png';
 import { Creators as AuthActions } from '../../store/ducks/auth';
 
 const DefaultHeader = ({ logOut }) => {
-  const [name] = useState(localStorage.getItem('@COVID_NAME'));
-  const [permission] = useState(localStorage.getItem('@COVID_PERMISSION'));
+  const [name] = useState(localStorage.getItem('@CODE7_NAME'));
+  const [permission] = '1';
   const [adm, setAdm] = useState(false);
   const [perName, setPername] = useState('');
 
@@ -48,7 +48,7 @@ const DefaultHeader = ({ logOut }) => {
       <AppSidebarToggler className="d-lg-none" display="md" mobile />
 
       <AppNavbarBrand
-        full={{ src: sygnet, width: 95, height: 30, alt: 'Covid-ARN' }}
+        full={{ src: sygnet, width: 95, height: 30, alt: 'Code7' }}
       />
       <AppSidebarToggler className="d-md-down-none" display="lg" />
 
