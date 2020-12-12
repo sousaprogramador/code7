@@ -18,6 +18,10 @@ const Financial = Schema({
       min: 0,
       max: 255
     },
+    date : {
+      type : Date,
+      required: true,
+    },
     created_at :{
       type : Date,
       default : new Date()

@@ -16,111 +16,126 @@ import {
 
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 
-const Register = memo(({ isOpenModal, dataRequest, userData }) => {
-  useEffect(() => {
-    dataRequest();
-  }, []);
+const Register = memo(
+  ({ isOpenModal, dataRequest, createRequest, userData, close }) => {
+    useEffect(() => {
+      dataRequest();
+    }, []);
 
-  const [data, setData] = useState({});
+    const [data, setData] = useState({});
 
-  const handleCreateCase = (e) => {
-    e.preventDefault();
-    const saveData = {};
-  };
+    const handleClose = () => {
+      setData({});
+      close();
+    };
 
-  const handleChange = ({ target }) =>
-    setData((u) => ({ ...u, [target.name]: target.value }));
+    const handleCreateCase = (e) => {
+      e.preventDefault();
+      const saveData = {
+        client_id: data.client_id,
+        date: data.date,
+        motive: data.motive,
+        amount: data.amount,
+      };
+      createRequest(saveData);
+      handleClose();
+    };
 
-  return (
-    <Dialog open={isOpenModal} maxWidth="lg">
-      <DialogContent>
-        <Card body>
-          <Container>
-            <Box display="flex" justifyContent="center">
-              <Form onSubmit={(e) => handleCreateCase(e)}>
-                <h5>Informações Pessoais:</h5>
+    const handleChange = ({ target }) =>
+      setData((u) => ({ ...u, [target.name]: target.value }));
 
-                <Row form>
-                  <Col className="px-md-2" md={12}>
-                    <FormGroup>
-                      <Label>Nome Completo:*</Label>
+    return (
+      <Dialog open={isOpenModal} maxWidth="lg">
+        <DialogContent>
+          <Card body>
+            <Container>
+              <Box display="flex" justifyContent="center">
+                <Form onSubmit={(e) => handleCreateCase(e)}>
+                  <h5>Informações Pessoais:</h5>
 
-                      <Input
-                        name="userId"
-                        type="select"
-                        onChange={handleChange}
-                        value={data.userId}
-                      >
-                        {userData
-                          ? userData.map((row) => (
-                            <option value={row.id}>{row.name}</option>
-                          ))
-                          : ''}
-                      </Input>
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row form>
-                  <Col className="px-md-2" md={24}>
-                    <FormGroup>
-                      <Label>Motivo:*</Label>
+                  <Row form>
+                    <Col className="px-md-2" md={12}>
+                      <FormGroup>
+                        <Label>Nome Completo:*</Label>
 
-                      <Input
-                        name="motive"
-                        type="textarea"
-                        value={data.motive || ''}
-                        onChange={handleChange}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row form>
-                  <Col className="px-md-2" md={24}>
-                    <FormGroup>
-                      <Label>Data:*</Label>
+                        <Input
+                          name="client_id"
+                          type="select"
+                          onChange={handleChange}
+                          value={data.client_id}
+                        >
+                          <option value="">Selecione</option>
+                          {userData
+                            ? userData.map((row) => (
+                                <option value={row.id}>{row.name}</option>
+                              ))
+                            : ''}
+                        </Input>
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row form>
+                    <Col className="px-md-2" md={24}>
+                      <FormGroup>
+                        <Label>Motivo:*</Label>
 
-                      <Input
-                        name="create_at"
-                        type="date"
-                        max={new Date().toISOString().slice(0, 10)}
-                        required
-                        onChange={handleChange}
-                        value={data.create_at || ''}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Row form>
-                  <Col className="px-md-2" md={24}>
-                    <FormGroup>
-                      <Label>Data:*</Label>
+                        <Input
+                          name="motive"
+                          type="textarea"
+                          value={data.motive || ''}
+                          onChange={handleChange}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row form>
+                    <Col className="px-md-2" md={24}>
+                      <FormGroup>
+                        <Label>Data:*</Label>
 
-                      <Input
-                        name="amount"
-                        type="number"
-                        required
-                        onChange={handleChange}
-                        value={data.amount || ''}
-                      />
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <div>
-                  <Button type="submit" color="primary">
-                    <i className="cil-save" /> Cadastrar
-                  </Button>{' '}
-                  <Button type="reset" color="danger" onClick={() => {}}>
-                    <i className="cil-x" /> Cancelar
-                  </Button>
-                </div>
-              </Form>
-            </Box>
-          </Container>
-        </Card>
-      </DialogContent>
-    </Dialog>
-  );
-});
+                        <Input
+                          name="date"
+                          type="date"
+                          max={new Date().toISOString().slice(0, 10)}
+                          required
+                          onChange={handleChange}
+                          value={data.date || ''}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <Row form>
+                    <Col className="px-md-2" md={24}>
+                      <FormGroup>
+                        <Label>valor:*</Label>
+
+                        <Input
+                          name="amount"
+                          type="number"
+                          required
+                          onChange={handleChange}
+                          value={data.amount || ''}
+                        />
+                      </FormGroup>
+                    </Col>
+                  </Row>
+                  <div>
+                    <Button type="submit" color="primary">
+                      <i className="cil-save" /> Cadastrar
+                    </Button>{' '}
+                    <Button type="reset" color="danger" onClick={handleClose}>
+                      <i className="cil-x" /> Cancelar
+                    </Button>
+                  </div>
+                </Form>
+              </Box>
+            </Container>
+          </Card>
+        </DialogContent>
+      </Dialog>
+    );
+  },
+);
 
 const mapStateToProps = (state) => ({
   userData: state.dashboard.data,
