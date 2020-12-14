@@ -16,6 +16,8 @@ import {
 
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 import { Creators as ClientsActions } from 'store/ducks/clients';
+
+import AlertDialog from 'components/AlertDialog';
 import { StyledTableCell, StyledTableRow, useStyles } from './styles';
 import AddForm from './components/AddForm';
 
@@ -36,7 +38,10 @@ const Dashboard = ({ dataRequest, clientsRequest, financial, clients }) => {
             <Tooltip title="Deletar" placement="top">
               <Button
                 size="sm"
-                onClick={() => {}}
+                onClick={() => {
+                  setNotiData(row);
+                  setOpenAlert(true);
+                }}
                 style={{ marginRight: 13 }}
                 color="danger"
               >
@@ -101,6 +106,13 @@ const Dashboard = ({ dataRequest, clientsRequest, financial, clients }) => {
         clientsRequest={clientsRequest}
         userData={clients}
         close={() => setOpen(false)}
+      />
+
+      <AlertDialog
+        data={notifData}
+        open={openAlert}
+        deleteNotif={(id) => deleteCasesRequest(id)}
+        close={() => setOpenAlert(false)}
       />
     </div>
   );
