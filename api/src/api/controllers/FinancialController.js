@@ -46,9 +46,13 @@ class FinancialController {
   async destroy(req,res){
     const { _id } = req.params;
     try {
-      const financial = await Financial.findOne({ _id });
-      await financial.remove();
-      return res.status(200);
+      Financial.deleteOne({ _id }, function(error) {
+        if (error) {
+         res.status(503).send({ message: "erro ao deletar" });
+        } else {
+         res.status(200).send({ message: "registro deletado com sucesso" });
+        }
+       });
     } catch (error) {
       return res.status(500).json({ error });
     }
