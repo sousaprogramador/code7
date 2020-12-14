@@ -18,9 +18,10 @@ import { Creators as DashboardActions } from 'store/ducks/dashboard';
 import { StyledTableCell, StyledTableRow, useStyles } from './styles';
 import AddForm from './components/AddForm';
 
-const Dashboard = ({ dataRequest, clients }) => {
+const Dashboard = ({ dataRequest, clientRequest, client, financial }) => {
   useEffect(() => {
     dataRequest();
+    clientRequest();
   }, []);
 
   const classes = useStyles();
@@ -28,7 +29,7 @@ const Dashboard = ({ dataRequest, clients }) => {
 
   const renderCells = useCallback(
     () =>
-      clients.map((row) => (
+      financial.map((row) => (
         <StyledTableRow key={row.id}>
           <StyledTableCell component="th" scope="row">
             <Tooltip title="Deletar" placement="top">
@@ -50,9 +51,10 @@ const Dashboard = ({ dataRequest, clients }) => {
           <StyledTableCell>{row.name}</StyledTableCell>
           <StyledTableCell>{row.username || 'Não informado'}</StyledTableCell>
           <StyledTableCell>{row.email}</StyledTableCell>
+          <StyledTableCell>{row.amount}</StyledTableCell>
         </StyledTableRow>
       )),
-    [clients],
+    [financial],
   );
 
   const handleOpenAdd = () => {
@@ -77,6 +79,7 @@ const Dashboard = ({ dataRequest, clients }) => {
                 <StyledTableCell>Nome</StyledTableCell>
                 <StyledTableCell>Usuario</StyledTableCell>
                 <StyledTableCell>Email</StyledTableCell>
+                <StyledTableCell>Valor</StyledTableCell>
               </TableRow>
             </TableHead>
             <TableBody>{renderCells()}</TableBody>
@@ -84,8 +87,8 @@ const Dashboard = ({ dataRequest, clients }) => {
 
           <TablePagination
             component="span"
-            count={10}
-            page={1}
+            count="10"
+            page="1"
             labelRowsPerPage="Result. por pág."
             nextIconButtonText="Prox. pág"
             backIconButtonText="Pág. anterior"
@@ -95,6 +98,8 @@ const Dashboard = ({ dataRequest, clients }) => {
       <AddForm
         isOpenModal={open}
         getData={() => {}}
+        useData={client}
+        clientRequest={clientRequest}
         close={() => setOpen(false)}
       />
     </div>
@@ -102,11 +107,13 @@ const Dashboard = ({ dataRequest, clients }) => {
 };
 
 Dashboard.defaultProps = {
-  clients: [],
+  client: [],
+  financial: [],
 };
 
 const mapStateToProps = (state) => ({
-  clients: state.dashboard.data,
+  financial: state.dashboard.data,
+  client: state.dashboard.client,
 });
 
 const mapDispatchToProps = (dispatch) =>

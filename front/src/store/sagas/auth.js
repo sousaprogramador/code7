@@ -5,11 +5,11 @@ import { api } from '../../services';
 import { Creators as AuthAction } from '../ducks/auth';
 
 export function* init() {
-  const token = localStorage.getItem('@CODE7_TOKENS');
-  if (token) {
-    yield put(AuthAction.signInSuccess(token));
+  //const token = localStorage.getItem('@CODE7_TOKENS');
+  //if (token) {
+  //  yield put(AuthAction.signInSuccess(token));
     yield put(push('/dashboard'));
-  }
+  //}
 
   yield put(AuthAction.initCheckSuccess());
 }

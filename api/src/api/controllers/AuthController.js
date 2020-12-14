@@ -15,11 +15,11 @@ class AuthController {
         return res.status(400).json({msg:"username or password invalid"})
       }
 
-      const token = jwt.sign( { id: "75253385b188d3113aea2cfe416dd0f3" } ,authConfig.secret,{
-        expiresIn:86500,
-       })
+      //const token = jwt.sign( { id: "75253385b188d3113aea2cfe416dd0f3" },{
+      //  expiresIn:86500,
+      // })
 
-      return res.send({user,token});
+      return res.send({user});
     } catch (error) {
       return res.status(500).json({error});
     }

@@ -17,9 +17,9 @@ import {
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 
 const Register = memo(
-  ({ isOpenModal, dataRequest, createRequest, userData, close }) => {
+  ({ isOpenModal, clientRequest, createRequest, userData, close }) => {
     useEffect(() => {
-      dataRequest();
+      clientRequest();
     }, []);
 
     const [data, setData] = useState({});
@@ -67,8 +67,8 @@ const Register = memo(
                           <option value="">Selecione</option>
                           {userData
                             ? userData.map((row) => (
-                                <option value={row.id}>{row.name}</option>
-                              ))
+                              <option value={row.id}>{row.name}</option>
+                            ))
                             : ''}
                         </Input>
                       </FormGroup>
@@ -138,7 +138,7 @@ const Register = memo(
 );
 
 const mapStateToProps = (state) => ({
-  userData: state.dashboard.data,
+  userData: state.dashboard.client,
   loading: null,
   params: null,
 });

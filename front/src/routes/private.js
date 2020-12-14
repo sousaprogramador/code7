@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={(props) =>
-      store.getState().auth.signedIn ? (
+      !store.getState().auth.signedIn ? (
         <Component {...props} />
       ) : (
         <Redirect
