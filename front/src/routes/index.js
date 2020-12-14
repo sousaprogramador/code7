@@ -8,6 +8,7 @@ import Private from './private';
 const DefaultLayout = React.lazy(() => import('../components/DefaultLayout'));
 
 const SignIn = React.lazy(() => import('../pages/SignIn'));
+const SignUp = React.lazy(() => import('../pages/SignUp'));
 const Dashboard = React.lazy(() => import('../pages/Dashboard'));
 
 const loading = () => (
@@ -31,6 +32,7 @@ const Routes = () => (
         ))}
 
         <Route path="/" component={(props) => <SignIn {...props} />} />
+        <Route path="/register" component={(props) => <SignUp {...props} />} />
       </Switch>
     </Suspense>
   </Router>

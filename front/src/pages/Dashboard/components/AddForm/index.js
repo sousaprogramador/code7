@@ -14,12 +14,13 @@ import {
   Card,
 } from 'reactstrap';
 
+import { Creators as ClientsActions } from 'store/ducks/clients';
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 
 const Register = memo(
-  ({ isOpenModal, clientRequest, createRequest, userData, close }) => {
+  ({ isOpenModal, clientsRequest, createRequest, userData, close }) => {
     useEffect(() => {
-      clientRequest();
+      clientsRequest();
     }, []);
 
     const [data, setData] = useState({});
@@ -28,6 +29,8 @@ const Register = memo(
       setData({});
       close();
     };
+
+    console.log(userData);
 
     const handleCreateCase = (e) => {
       e.preventDefault();
@@ -136,14 +139,7 @@ const Register = memo(
     );
   },
 );
-
-const mapStateToProps = (state) => ({
-  userData: state.dashboard.client,
-  loading: null,
-  params: null,
-});
-
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ ...DashboardActions }, dispatch);
+  bindActionCreators({ ...ClientsActions, ...DashboardActions }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(null, mapDispatchToProps)(Register);

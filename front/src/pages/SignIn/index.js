@@ -98,6 +98,16 @@ const SignIn = ({ signInRequest }) => {
                     >
                       ENTRAR
                     </Button>
+                    <Link to="/register">
+                      <Button
+                        color="link"
+                        className="mt-3"
+                        active
+                        tabIndex={-1}
+                      >
+                        Registre-se
+                      </Button>
+                    </Link>
                   </Form>
                   <Label />
                 </CardBody>

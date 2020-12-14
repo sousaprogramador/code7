@@ -15,13 +15,14 @@ import {
 } from '@material-ui/core';
 
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
+import { Creators as ClientsActions } from 'store/ducks/clients';
 import { StyledTableCell, StyledTableRow, useStyles } from './styles';
 import AddForm from './components/AddForm';
 
-const Dashboard = ({ dataRequest, clientRequest, client, financial }) => {
+const Dashboard = ({ dataRequest, clientsRequest, financial, clients }) => {
   useEffect(() => {
     dataRequest();
-    clientRequest();
+    clientsRequest();
   }, []);
 
   const classes = useStyles();
@@ -97,9 +98,8 @@ const Dashboard = ({ dataRequest, clientRequest, client, financial }) => {
       </Card>
       <AddForm
         isOpenModal={open}
-        getData={() => {}}
-        useData={client}
-        clientRequest={clientRequest}
+        clientsRequest={clientsRequest}
+        userData={clients}
         close={() => setOpen(false)}
       />
     </div>
@@ -107,16 +107,16 @@ const Dashboard = ({ dataRequest, clientRequest, client, financial }) => {
 };
 
 Dashboard.defaultProps = {
-  client: [],
   financial: [],
+  clients: [],
 };
 
 const mapStateToProps = (state) => ({
   financial: state.dashboard.data,
-  client: state.dashboard.client,
+  clients: state.clients.data,
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({ ...DashboardActions }, dispatch);
+  bindActionCreators({ ...DashboardActions, ...ClientsActions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

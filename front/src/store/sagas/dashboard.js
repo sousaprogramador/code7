@@ -26,6 +26,7 @@ export function* dataRequest() {
 export function* clientRequest() {
   try {
     const { data } = yield call(userApi.get, 'users');
+
     yield put(DashActions.clientSuccess(data));
   } catch (error) {}
 }

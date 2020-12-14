@@ -12,8 +12,8 @@ export const Types = {
 const INITIAL_STATE = {
   loading: false,
   error: false,
-  data: [],
   client: [],
+  data: [],
 };
 
 export default function dashboard(state = INITIAL_STATE, action) {
