@@ -5,8 +5,6 @@ const Financial = Schema({
     client_id: {
       type: Number,
       required: true,
-      min: 0,
-      max: 255
     },
     motive : {
       type : String,
