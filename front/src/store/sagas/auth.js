@@ -17,7 +17,7 @@ export function* init() {
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload.data;
-    const { data } = yield call(api.post, '/auth', {
+    const { data } = yield call(api.post, '/user/login', {
       email,
       password,
     });

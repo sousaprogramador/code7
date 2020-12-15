@@ -18,7 +18,14 @@ import { Creators as ClientsActions } from 'store/ducks/clients';
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 
 const Register = memo(
-  ({ isOpenModal, clientsRequest, createRequest, userData, close }) => {
+  ({
+    isOpenModal,
+    clientsRequest,
+    createRequest,
+    userData,
+    close,
+    getData,
+  }) => {
     useEffect(() => {
       // clientsRequest();
     }, []);
@@ -39,6 +46,7 @@ const Register = memo(
         amount: data.amount,
       };
       createRequest(saveData);
+      setTimeout(() => getData(), 1000);
       handleClose();
     };
 

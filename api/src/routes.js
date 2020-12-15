@@ -8,8 +8,10 @@ const AuthController = require("./api/controllers/AuthController");
 routes.post("/user", UserController.store);
 routes.get("/user", UserController.index);
 routes.get("/user/:_id", UserController.show);
+routes.put("/user/:_id", FinancialController.update);
+routes.delete("/user/:_id", FinancialController.destroy);
 
-routes.post("/auth", AuthController.store);
+routes.post("/user/login", AuthController.store);
 
 //routes.use(authMiddleware);
 

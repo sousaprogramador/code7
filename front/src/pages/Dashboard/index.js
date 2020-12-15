@@ -29,6 +29,7 @@ const Dashboard = ({
   financial,
   clients,
   updateRequest,
+  count,
 }) => {
   useEffect(() => {
     dataRequest();
@@ -50,6 +51,8 @@ const Dashboard = ({
     setUserData(client);
     setTimeout(() => setUserModalOpen(true), 1000);
   };
+
+  const refresh = useCallback(() => dataRequest(), [financial]);
 
   const renderCells = useCallback(
     () =>
@@ -114,19 +117,23 @@ const Dashboard = ({
 
           <TablePagination
             component="span"
-            count="10"
+            count={count}
             page="1"
             labelRowsPerPage="Result. por pág."
             nextIconButtonText="Prox. pág"
             backIconButtonText="Pág. anterior"
+            onChangePage={() => {}}
+            rowsPerPage={() => {}}
+            onChangeRowsPerPage={() => {}}
           />
         </TableContainer>
       </Card>
       <AddForm
         isOpenModal={open}
-        clientsRequest={dataRequest}
+        clientsRequest={clientsRequest}
         userData={clients}
         close={() => setOpen(false)}
+        getData={refresh}
       />
 
       <EditForm
@@ -134,6 +141,7 @@ const Dashboard = ({
         userData={userData}
         updateRequest={updateRequest}
         close={() => setUserModalOpen(false)}
+        getData={refresh}
       />
 
       <AlertDialog
@@ -154,6 +162,8 @@ Dashboard.defaultProps = {
 const mapStateToProps = (state) => ({
   financial: state.dashboard.data,
   clients: state.clients.data,
+  count: 10,
+  lastPage: 10,
 });
 
 const mapDispatchToProps = (dispatch) =>
