@@ -17,17 +17,25 @@ import {
 import { Creators as DashboardActions } from 'store/ducks/dashboard';
 import { Creators as ClientsActions } from 'store/ducks/clients';
 
-import AlertDialog from 'components/AlertDialog';
+import AlertDialog from './components/AlertDialog';
 import { StyledTableCell, StyledTableRow, useStyles } from './styles';
 import AddForm from './components/AddForm';
 
-const Dashboard = ({ dataRequest, clientsRequest, financial, clients }) => {
+const Dashboard = ({
+  dataRequest,
+  clientsRequest,
+  deleteRequest,
+  financial,
+  clients,
+}) => {
   useEffect(() => {
     dataRequest();
     clientsRequest();
   }, []);
 
   const classes = useStyles();
+  const [openAlert, setOpenAlert] = useState(false);
+  const [notifData, setNotiData] = useState(null);
   const [open, setOpen] = useState(false);
 
   const renderCells = useCallback(
@@ -111,7 +119,7 @@ const Dashboard = ({ dataRequest, clientsRequest, financial, clients }) => {
       <AlertDialog
         data={notifData}
         open={openAlert}
-        deleteNotif={(id) => deleteCasesRequest(id)}
+        deleteNotif={(id) => deleteRequest(id)}
         close={() => setOpenAlert(false)}
       />
     </div>

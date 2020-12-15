@@ -21,7 +21,8 @@ const AlertDialogSlide = memo(({ open, close, data, deleteNotif }) => (
     aria-describedby="alert-dialog-slide-description"
   >
     <DialogTitle id="alert-dialog-slide-title">
-      {`Deletar ${data && data.patient.profile.name} ?`}
+      {console.log('AlertDialogSlide', data)}
+      Deseja deletar esse registro?
     </DialogTitle>
 
     <DialogContent>
@@ -36,7 +37,7 @@ const AlertDialogSlide = memo(({ open, close, data, deleteNotif }) => (
       </Button>
       <Button
         onClick={() => {
-          deleteNotif(data && data.id);
+          deleteNotif(data && { id: data._id });
           close();
         }}
         color="primary"

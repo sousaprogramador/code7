@@ -36,3 +36,9 @@ export function* createRequest({ payload }) {
     yield call(api.post, '/financial', payload.data);
   } catch (error) {}
 }
+
+export function* deleteRequest({ payload }) {
+  try {
+    yield call(api.delete, `/financial/${payload.data.id}`, payload.data);
+  } catch (error) {}
+}

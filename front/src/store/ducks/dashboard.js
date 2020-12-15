@@ -7,6 +7,10 @@ export const Types = {
   CLIENT_ERROR: 'CLIENT_ERROR',
   CREATE_REQUEST: 'CREATE_REQUEST',
   CREATE_SUCCESS: 'CREATE_SUCCESS',
+  UPDATE_REQUEST: 'CREATE_REQUEST',
+  UPDATE_SUCCESS: 'CREATE_SUCCESS',
+  DELETE_REQUEST: 'CREATE_REQUEST',
+  DELETE_SUCCESS: 'CREATE_SUCCESS',
 };
 
 const INITIAL_STATE = {
@@ -63,6 +67,28 @@ export default function dashboard(state = INITIAL_STATE, action) {
         error: false,
         data: action.payload.data,
       };
+    case Types.UPDATE_REQUEST:
+      return {
+        loading: true,
+        error: false,
+      };
+    case Types.UPDATE_SUCCESS:
+      return {
+        loading: false,
+        error: false,
+        data: action.payload.data,
+      };
+    case Types.DELETE_REQUEST:
+      return {
+        loading: true,
+        error: false,
+      };
+    case Types.DELETE_SUCCESS:
+      return {
+        loading: false,
+        error: false,
+        data: action.payload.data,
+      };
     default:
       return state;
   }
@@ -91,6 +117,22 @@ export const Creators = {
   }),
   createSuccess: (data) => ({
     type: Types.CREATE_SUCCESS,
+    payload: { data },
+  }),
+  updateRequest: (data) => ({
+    type: Types.UPDATE_REQUEST,
+    payload: { data },
+  }),
+  updateSuccess: (data) => ({
+    type: Types.UPDATE_SUCCESS,
+    payload: { data },
+  }),
+  deleteRequest: (data) => ({
+    type: Types.DELETE_REQUEST,
+    payload: { data },
+  }),
+  deleteSuccess: (data) => ({
+    type: Types.DELETE_SUCCESS,
     payload: { data },
   }),
 };
