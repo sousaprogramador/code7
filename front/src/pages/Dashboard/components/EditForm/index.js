@@ -109,7 +109,7 @@ const EditForm = memo(
                           type="date"
                           required
                           onChange={(e) => setDate(e.target.value)}
-                          value={new Date(date).toLocaleDateString()}
+                          value={date}
                         />
                       </FormGroup>
                     </Col>

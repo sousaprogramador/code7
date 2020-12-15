@@ -11,7 +11,7 @@ const Transition = React.forwardRef((props, ref) => (
   <Slide direction="up" ref={ref} {...props} />
 ));
 
-const AlertDialogSlide = memo(({ open, close, data, deleteNotif }) => (
+const AlertDialogSlide = memo(({ open, close, data, deleteNotif, getData }) => (
   <Dialog
     open={open}
     TransitionComponent={Transition}
@@ -38,6 +38,7 @@ const AlertDialogSlide = memo(({ open, close, data, deleteNotif }) => (
       <Button
         onClick={() => {
           deleteNotif(data && { id: data._id });
+          setTimeout(() => getData(), 1000);
           close();
         }}
         color="primary"

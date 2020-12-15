@@ -52,7 +52,12 @@ const Dashboard = ({
     setTimeout(() => setUserModalOpen(true), 1000);
   };
 
-  const refresh = useCallback(() => dataRequest(), [financial]);
+  function handleRefresh() {
+    dataRequest();
+    clientsRequest();
+  }
+
+  const refresh = useCallback(() => handleRefresh(), [financial]);
 
   const renderCells = useCallback(
     () =>
@@ -149,6 +154,7 @@ const Dashboard = ({
         open={openAlert}
         deleteNotif={(id) => deleteRequest(id)}
         close={() => setOpenAlert(false)}
+        getData={refresh}
       />
     </div>
   );
