@@ -13,8 +13,6 @@ const Financial = Schema({
     amount : {
       type : Number,
       required: true,
-      min: 0,
-      max: 255
     },
     date : {
       type : Date,

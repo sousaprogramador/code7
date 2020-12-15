@@ -11,3 +11,5 @@
 5. Executando api 
 > yarn start
 6. [API documentation](https://app.swaggerhub.com/apis/sousaprogramador/code7/1.0.0#/user/createUser)
+
+Favor usar node LTS
