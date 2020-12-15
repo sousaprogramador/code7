@@ -10,6 +10,4 @@
 > yarn start
 5. Executando api 
 > yarn start
-6. Recomentado importa as collections dentro do [postman](https://www.postman.com/downloads/)
-⋅⋅⋅ A collection se econtra na raiz do projeto, code7.postman_collections.json .⋅⋅
-⋅⋅⋅ Recomendo que seja executado a roda de criacao de usuario para usar a aplicacao no front .⋅⋅
+6. [API documentation](https://app.swaggerhub.com/apis/sousaprogramador/code7/1.0.0#/user/createUser)
