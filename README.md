@@ -12,4 +12,4 @@
 > yarn start
 6. [API documentation](https://app.swaggerhub.com/apis/sousaprogramador/code7/1.0.0#/user/createUser)
 
-Favor usar node LTS
+> Usar Node LTS, a porta atual da api er 9000 , ex: http://localhost:9000
