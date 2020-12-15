@@ -37,6 +37,21 @@ export function* createRequest({ payload }) {
   } catch (error) {}
 }
 
+export function* updateRequest({ payload }) {
+  try {
+    // eslint-disable-next-line camelcase
+    const { client_id, date, motive, amount } = payload.data;
+
+    // eslint-disable-next-line no-underscore-dangle
+    yield call(api.put, `/financial/${payload.data._id}`, {
+      client_id,
+      date,
+      motive,
+      amount,
+    });
+  } catch (error) {}
+}
+
 export function* deleteRequest({ payload }) {
   try {
     yield call(api.delete, `/financial/${payload.data.id}`, payload.data);

@@ -11,7 +11,6 @@ export function* getInviteAllowedRequest() {
 
     yield put(UserActions.getInviteAllowedSuccess(data));
   } catch (error) {
-    console.log(error);
     yield put(UserActions.getInviteAllowedErrror());
   }
 }
@@ -31,9 +30,7 @@ export function* createInviteRequest({ payload }) {
         options: { timeOut: 4000 },
       }),
     );
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }
 
 export function* signupCollaboratorRequest({ payload }) {
@@ -53,7 +50,5 @@ export function* signupCollaboratorRequest({ payload }) {
     });
 
     yield put(AuthAction.signInSuccess(data.token));
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 }

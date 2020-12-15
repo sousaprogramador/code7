@@ -37,7 +37,6 @@ export function* signIn({ payload }) {
       }),
     );
   } catch (error) {
-    console.log('erro', error);
     yield put(
       toastrActions.add({
         type: 'error',

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Dialog, DialogContent, Container, Box } from '@material-ui/core';
@@ -20,7 +20,7 @@ import { Creators as DashboardActions } from 'store/ducks/dashboard';
 const Register = memo(
   ({ isOpenModal, clientsRequest, createRequest, userData, close }) => {
     useEffect(() => {
-      clientsRequest();
+      // clientsRequest();
     }, []);
 
     const [data, setData] = useState({});
@@ -29,8 +29,6 @@ const Register = memo(
       setData({});
       close();
     };
-
-    console.log(userData);
 
     const handleCreateCase = (e) => {
       e.preventDefault();
@@ -70,8 +68,8 @@ const Register = memo(
                           <option value="">Selecione</option>
                           {userData
                             ? userData.map((row) => (
-                              <option value={row.id}>{row.name}</option>
-                            ))
+                                <option value={row.id}>{row.name}</option>
+                              ))
                             : ''}
                         </Input>
                       </FormGroup>
@@ -99,7 +97,6 @@ const Register = memo(
                         <Input
                           name="date"
                           type="date"
-                          max={new Date().toISOString().slice(0, 10)}
                           required
                           onChange={handleChange}
                           value={data.date || ''}

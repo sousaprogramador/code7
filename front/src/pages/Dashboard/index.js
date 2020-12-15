@@ -20,6 +20,7 @@ import { Creators as ClientsActions } from 'store/ducks/clients';
 import AlertDialog from './components/AlertDialog';
 import { StyledTableCell, StyledTableRow, useStyles } from './styles';
 import AddForm from './components/AddForm';
+import EditForm from './components/EditForm';
 
 const Dashboard = ({
   dataRequest,
@@ -27,6 +28,7 @@ const Dashboard = ({
   deleteRequest,
   financial,
   clients,
+  updateRequest,
 }) => {
   useEffect(() => {
     dataRequest();
@@ -36,7 +38,18 @@ const Dashboard = ({
   const classes = useStyles();
   const [openAlert, setOpenAlert] = useState(false);
   const [notifData, setNotiData] = useState(null);
+  const [userData, setUserData] = useState(null);
   const [open, setOpen] = useState(false);
+  const [userModalOpen, setUserModalOpen] = useState(false);
+
+  const handleOpenAdd = () => {
+    setOpen(true);
+  };
+
+  const handleEditUser = (client) => {
+    setUserData(client);
+    setTimeout(() => setUserModalOpen(true), 1000);
+  };
 
   const renderCells = useCallback(
     () =>
@@ -57,7 +70,11 @@ const Dashboard = ({
               </Button>
             </Tooltip>
             <Tooltip title="Editar" placement="top">
-              <Button onClick={() => {}} size="sm" color="primary">
+              <Button
+                onClick={() => handleEditUser(row)}
+                size="sm"
+                color="primary"
+              >
                 <i className="icon-pencil" />
               </Button>
             </Tooltip>
@@ -70,10 +87,6 @@ const Dashboard = ({
       )),
     [financial],
   );
-
-  const handleOpenAdd = () => {
-    setOpen(true);
-  };
 
   return (
     <div className="animated fadeIn">
@@ -111,9 +124,16 @@ const Dashboard = ({
       </Card>
       <AddForm
         isOpenModal={open}
-        clientsRequest={clientsRequest}
+        clientsRequest={dataRequest}
         userData={clients}
         close={() => setOpen(false)}
+      />
+
+      <EditForm
+        isOpenModal={userModalOpen}
+        userData={userData}
+        updateRequest={updateRequest}
+        close={() => setUserModalOpen(false)}
       />
 
       <AlertDialog

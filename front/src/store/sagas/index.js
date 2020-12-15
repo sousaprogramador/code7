@@ -1,9 +1,14 @@
-import { all, takeLatest, fork } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 import { signIn, init } from './auth';
 
 import { Types as AuthActions } from '../ducks/auth';
 
-import { dataRequest, createRequest, deleteRequest } from './dashboard';
+import {
+  dataRequest,
+  createRequest,
+  updateRequest,
+  deleteRequest,
+} from './dashboard';
 import { Types as DashboardActions } from '../ducks/dashboard';
 
 import { clientsRequest } from './clients';
@@ -15,6 +20,7 @@ export default function* rootSaga() {
     takeLatest(AuthActions.SIGN_IN_REQUEST, signIn),
     takeLatest(DashboardActions.DATA_REQUEST, dataRequest),
     takeLatest(DashboardActions.CREATE_REQUEST, createRequest),
+    takeLatest(DashboardActions.UPDATE_REQUEST, updateRequest),
     takeLatest(DashboardActions.DELETE_REQUEST, deleteRequest),
     takeLatest(ClientsActions.CLIENTS_REQUEST, clientsRequest),
   ]);
