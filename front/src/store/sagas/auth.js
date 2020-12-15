@@ -57,4 +57,8 @@ export function* getPermissions() {
   yield put(AuthAction.getPermissionsSuccess(data));
 }
 
-export function* logOut() {}
+export function* logOut() {
+  localStorage.removeItem('@CODE7_TOKENS');
+  localStorage.removeItem('@CODE7_NAME');
+  yield put(push('/'));
+}

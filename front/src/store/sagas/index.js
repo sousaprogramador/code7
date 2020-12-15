@@ -1,5 +1,5 @@
 import { all, takeLatest } from 'redux-saga/effects';
-import { signIn, init } from './auth';
+import { logOut, signIn, init } from './auth';
 
 import { Types as AuthActions } from '../ducks/auth';
 
@@ -18,6 +18,7 @@ export default function* rootSaga() {
   yield all([
     init(),
     takeLatest(AuthActions.SIGN_IN_REQUEST, signIn),
+    takeLatest(AuthActions.LOG_OUT, logOut),
     takeLatest(DashboardActions.DATA_REQUEST, dataRequest),
     takeLatest(DashboardActions.CREATE_REQUEST, createRequest),
     takeLatest(DashboardActions.UPDATE_REQUEST, updateRequest),
